@@ -5,10 +5,13 @@ env_variables:
   NODE_ENV: production
 
 handlers:
+  # Serve all static files (like css, js, images) from the 'build' folder
   - url: /(.*\..+)$
-    static_files: dist/\1
-    upload: dist/.*\..+$
+    static_files: build/\1
+    upload: build/.*\..+$
 
+  # For any other URL, serve the main index.html file
+  # This lets React Router handle the routing on the client-side
   - url: /.*
-    static_files: dist/index.html
-    upload: dist/index.html
+    static_files: build/index.html
+    upload: build/index.html
